@@ -22,7 +22,7 @@ function newGame() {
             circle.setAttribute("data-listener", "true");
         }
     }
-    
+
     showScore();
     addTurn();
 }
@@ -34,7 +34,7 @@ function showScore() {
 function addTurn() {
     game.playerMoves = [];
     game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]);
-    // showTurns();
+    showTurns();
 }
 
 function lightsOn(circ) {
@@ -55,5 +55,19 @@ function showTurns() {
     }, 800);
 }
 
+function playerTurn() {
+    let i = game.playerMoves.length - 1;
+    if (game.currentGame[i] === game.playerMoves[i]) {
+        if (game.currentGame.length === game.playerMoves.length) {
+            game.score++;
+            showScore();
+            addTurn();
+        }
+    } else {
+        alert("Wrong move!");
+        newGame();
+    }
+}
 
-module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns };
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn };
